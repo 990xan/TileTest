@@ -14,8 +14,8 @@ public class ChunkObject : MonoBehaviour
 
         void Start(){
             chunk = new Chunk(size, transform.position);
-            GroundTest1();
-            //StartCoroutine(GroundTest());
+            //GroundTest1();
+            StartCoroutine(GroundTest());
         }
 
         void GroundTest1(){
@@ -26,11 +26,11 @@ public class ChunkObject : MonoBehaviour
                         Tile tile = chunk.tiles[ix, iy, iz];
                         if (tile.chunkPosition.y <= 0){
                             tile.CopyTileData(tChache.tileCache[ground]);
-                            Instantiate(tile.gObject, tile.chunkPosition, new Quaternion(0,0,0,0));
+                            //Instantiate(tile.gObject, tile.chunkPosition, new Quaternion(0,0,0,0));
                         }
                         if (tile.chunkPosition.y <= -1 && random == 1){
                             tile.CopyTileData(tChache.tileCache[ore]);
-                            Instantiate(tile.gObject, tile.chunkPosition, new Quaternion(0,0,0,0));
+                            //Instantiate(tile.gObject, tile.chunkPosition, new Quaternion(0,0,0,0));
                         }
                     }
                 }
@@ -46,11 +46,11 @@ public class ChunkObject : MonoBehaviour
                         Tile tile = chunk.tiles[ix, iy, iz];
                         if (tile.chunkPosition.y <= 0){
                             tile.CopyTileData(tChache.tileCache[ground]);
-                            Instantiate(tile.gObject, tile.chunkPosition, new Quaternion(0,0,0,0));
+                            Instantiate(tile.gObject, tile.chunkPosition + transform.position, new Quaternion(0,0,0,0));
                         }
                         if (tile.chunkPosition.y <= -1 && random == 1){
                             tile.CopyTileData(tChache.tileCache[ore]);
-                            Instantiate(tile.gObject, tile.chunkPosition, new Quaternion(0,0,0,0));
+                            Instantiate(tile.gObject, tile.chunkPosition + transform.position, new Quaternion(0,0,0,0));
                         }
                         yield return null;
                     }
