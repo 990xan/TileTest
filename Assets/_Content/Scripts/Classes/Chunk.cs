@@ -6,25 +6,22 @@ namespace TileSystem{
     public class Chunk : ScriptableObject
     {
         public Tile[,,] tiles;
-        public int width = 16;
-        public int height = 16;
-        public int depth = 16;
+        public int size = 16;
         public Vector3 chunkposition;
 
-        public Chunk(int width, int height, int depth, Vector3 lChunkPosition){
+        public Chunk(int size, Vector3 lChunkPosition){
             InitChunk();
-            this.width = width;
-            this.height = height;
-            this.depth = depth;
+            this.size = size;
             chunkposition = lChunkPosition;
         }
 
         public void InitChunk(){
-            tiles = new Tile[width,height,depth];
-            for (int ix = 0; ix < width; ix++){
-                for (int iy = 0; iy < height; iy++){
-                    for (int iz = 0; iz < depth; iz++){
-                        tiles[ix, iy, iz] = new Tile(0, new Vector3(ix - width/2, iy - height/2, iz - depth/2));
+            tiles = new Tile[size,size,size];
+            for (int ix = 0; ix < size; ix++){
+                for (int iy = 0; iy < size; iy++){
+                    for (int iz = 0; iz < size; iz++){
+                        int sizeHalf = size /2;
+                        tiles[ix, iy, iz] = new Tile(0, new Vector3(ix - sizeHalf, iy - sizeHalf, iz - sizeHalf));
                     }
                 }
             }
