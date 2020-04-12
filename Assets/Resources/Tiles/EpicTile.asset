@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e1cc4a3cffb0d44cbf685c0836d2810, type: 3}
   m_Name: EpicTile
   m_EditorClassIdentifier: 
-  tileName: E
-  tileID: 3
+  tileName: Epic
   chunkID: 0
   chunkPosition: {x: 0, y: 0, z: 0}
   gObject: {fileID: 4729511672928430198, guid: 428b12fc7ac35f349abc3ae25c6ee35e, type: 3}

@@ -14,27 +14,7 @@ public class ChunkObject : MonoBehaviour
 
         void Start(){
             chunk = new Chunk(size, transform.position);
-            //GroundTest1();
             StartCoroutine(GroundTest());
-        }
-
-        void GroundTest1(){
-            for (int ix = 0; ix < size; ix++){
-                for (int iy = 0; iy < size; iy++){
-                    for (int iz = 0; iz < size; iz++){
-                        int random = Random.Range(0, 2);
-                        Tile tile = chunk.tiles[ix, iy, iz];
-                        if (tile.chunkPosition.y <= 0){
-                            tile.CopyTileData(tChache.tileCache[ground]);
-                            //Instantiate(tile.gObject, tile.chunkPosition, new Quaternion(0,0,0,0));
-                        }
-                        if (tile.chunkPosition.y <= -1 && random == 1){
-                            tile.CopyTileData(tChache.tileCache[ore]);
-                            //Instantiate(tile.gObject, tile.chunkPosition, new Quaternion(0,0,0,0));
-                        }
-                    }
-                }
-            }
         }
             
 
@@ -44,7 +24,7 @@ public class ChunkObject : MonoBehaviour
                     for (int iz = 0; iz < size; iz++){
                         int random = Random.Range(0, 2);
                         Tile tile = chunk.tiles[ix, iy, iz];
-                        if (tile.chunkPosition.y <= 0){
+                        if (tile.chunkPosition.y <= 0 && random != 1){
                             tile.CopyTileData(tChache.tileCache[ground]);
                             Instantiate(tile.gObject, tile.chunkPosition + transform.position, new Quaternion(0,0,0,0));
                         }
