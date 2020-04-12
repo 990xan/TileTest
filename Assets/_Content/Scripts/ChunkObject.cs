@@ -9,18 +9,19 @@ public class ChunkObject : MonoBehaviour
         public int width = 16;
         public int height = 16;
         public int depth = 16;
-        public string ground;
-        public string ore;
+        public string ground = "Ground";
+        public string ore = "Ore";
         public Vector3 offset; //how much it is offset from the origin
         public TileCache tChache;
 
         void Start(){
             chunk = new Chunk(width, height, depth, transform.position);
-            GroundTest1();
-            GroundTest2();
+            //GroundTest1();
+            //GroundTest2();
+            StartCoroutine(GroundTest());
         }
 
-        void GroundTest1(){
+        /*void GroundTest1(){
             foreach(Tile tile in chunk.tiles){
                 int random = Random.Range(0, 2);
                 if (tile.chunkPosition.y <= 0){
@@ -39,7 +40,44 @@ public class ChunkObject : MonoBehaviour
                     Instantiate(tile.gObject, tile.chunkPosition, new Quaternion(0,0,0,0));
                 }
             }
+        }*/
+
+        IEnumerator GroundTest(){
+            /*foreach(Tile tile in chunk.tiles){
+                int random = Random.Range(0, 2);
+                if (tile.chunkPosition.y <= 0){
+                    tile.CopyTileData(tChache.tileCache[ground]);
+                    Instantiate(tile.gObject, tile.chunkPosition, new Quaternion(0,0,0,0));
+                }
+                if (tile.chunkPosition.y <= -1 && random == 1){
+                    tile.CopyTileData(tChache.tileCache[ore]);
+                    Instantiate(tile.gObject, tile.chunkPosition, new Quaternion(0,0,0,0));
+                }
+                yield return new WaitForSecondsRealtime(.005f);
+            }*/
+
+            for (int ix = 0; ix < width; ix++){
+                for (int iy = 0; iy < height; iy++){
+                    for (int iz = 0; iz < depth; iz++){
+                        int random = Random.Range(0, 2);
+                        Tile tile = chunk.tiles[ix, iy, iz];
+                        if (tile.chunkPosition.y <= 0){
+                            tile.CopyTileData(tChache.tileCache[ground]);
+                            Instantiate(tile.gObject, Vector3.Scale(tile.chunkPosition, transform.position), new Quaternion(0,0,0,0));
+                        }
+                        if (tile.chunkPosition.y <= -1 && random == 1){
+                            tile.CopyTileData(tChache.tileCache[ore]);
+                            Instantiate(tile.gObject, Vector3.Scale(tile.chunkPosition, transform.position), new Quaternion(0,0,0,0));
+                        }
+                        yield return null;
+                    }
+                }
+            }
+
+
+            
         }
+        
 
         void OnDrawGizmos(){
             Gizmos.color = Color.cyan;
