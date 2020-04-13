@@ -15,4 +15,4 @@ MonoBehaviour:
   tileName: Epic
   chunkID: 0
   chunkPosition: {x: 0, y: 0, z: 0}
-  gObject: {fileID: 9176619839621562631, guid: 17be8d51f71795b4aa750107a43688dc, type: 3}
+  gObject: {fileID: 4729511672928430198, guid: 428b12fc7ac35f349abc3ae25c6ee35e, type: 3}

@@ -9,35 +9,14 @@ public class ChunkObject : MonoBehaviour
         public int size = 16; //the width, height, and depth, must be even or everything will break and burn
         public string ground = "Ground";
         public string ore = "Ore";
-        public Vector3 offset; //how much it is offset from the origin
+        public Vector3 offset; //how much it is offset from the origin, in 'gridspace' / if chunk is at 16, 32, 16 the offset will be 1,2,1
         public TileCache tChache;
 
         void Start(){
             chunk = new Chunk(size, transform.position);
-            //StartCoroutine(GroundTest());
         }
             
 
-        /*IEnumerator GroundTest(){
-            for (int ix = 0; ix < size; ix++){
-                for (int iy = 0; iy < size; iy++){
-                    for (int iz = 0; iz < size; iz++){
-                        int random = Random.Range(0, 2);
-                        Tile tile = chunk.tiles[ix, iy, iz];
-                        if (tile.chunkPosition.y == 0){
-                            tile.CopyTileData(tChache.tileCache[ground]);
-                            Instantiate(tile.gObject, tile.chunkPosition + transform.position, new Quaternion(0,0,0,0));
-                        }
-                        if (tile.chunkPosition.y <= -1 && random == 1){
-                            tile.CopyTileData(tChache.tileCache[ore]);
-                            Instantiate(tile.gObject, tile.chunkPosition + transform.position, new Quaternion(0,0,0,0));
-                        }
-                        yield return null;
-                    }
-                }
-            }
-        }*/
-        
 
         void OnDrawGizmos(){
             Gizmos.color = Color.cyan;

@@ -19,6 +19,9 @@ public class ChunkGObjectTest : MonoBehaviour
                     for (int iz = 0; iz < size; iz++){
                         int random = Random.Range(0, 2);
                         Tile tile = chunkObject.chunk.tiles[ix, iy, iz];
+                        if (tile.tileName == null){
+                            yield return null;
+                        }
                         if (tile.chunkPosition.y == 0){
                             tile.CopyTileData(chunkObject.tChache.tileCache[chunkObject.ground]);
                             Instantiate(tile.gObject, tile.chunkPosition + transform.position, new Quaternion(0,0,0,0));
