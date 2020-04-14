@@ -13,7 +13,7 @@ public class ChunkGObjectTest : MonoBehaviour
        Gen();
     }
 
-    IEnumerator Calculate(){
+    /*IEnumerator Calculate(){
         int size = chunkObject.size;
         for (int ix = 0; ix < size; ix++){
             for (int iy = 0; iy < size; iy++){
@@ -24,22 +24,22 @@ public class ChunkGObjectTest : MonoBehaviour
                         yield return null;
                     }
                     if (tile.chunkPosition.y == 0){
-                        tile.CopyTileData(chunkObject.tChache.tileCache[chunkObject.ground]);
+                        tile.CopyTileData(chunkObject.tCache.tileCache[chunkObject.ground]);
                         Instantiate(tile.gObject, tile.chunkPosition + transform.position, new Quaternion(0,0,0,0));
                     }
                     if (tile.chunkPosition.y < 0 && random == 0){
-                        tile.CopyTileData(chunkObject.tChache.tileCache[chunkObject.ground]);
+                        tile.CopyTileData(chunkObject.tCache.tileCache[chunkObject.ground]);
                         Instantiate(tile.gObject, tile.chunkPosition + transform.position, new Quaternion(0,0,0,0));
                     }
                     if (tile.chunkPosition.y <= -1 && random == 1){
-                        tile.CopyTileData(chunkObject.tChache.tileCache[chunkObject.ore]);
+                        tile.CopyTileData(chunkObject.tCache.tileCache[chunkObject.ore]);
                         Instantiate(tile.gObject, tile.chunkPosition + transform.position, new Quaternion(0,0,0,0));
                     }
                     yield return null;
                 }
             }
         }
-    }
+    }*/
 
     void Gen(){
         int size = chunkObject.size;
@@ -48,17 +48,21 @@ public class ChunkGObjectTest : MonoBehaviour
                 for (int iz = 0; iz < size; iz++){
                     int random = Random.Range(0, 2);
                     Tile tile = chunkObject.chunk.tiles[ix, iy, iz];
-                    if (tile.chunkPosition.y == 0){
-                        tile.CopyTileData(chunkObject.tChache.tileCache[chunkObject.ground]);
-                        Instantiate(tile.gObject, tile.chunkPosition + transform.position, new Quaternion(0,0,0,0));
-                    }
-                    if (tile.chunkPosition.y < 0 && random == 0){
-                        tile.CopyTileData(chunkObject.tChache.tileCache[chunkObject.ground]);
-                        Instantiate(tile.gObject, tile.chunkPosition + transform.position, new Quaternion(0,0,0,0));
-                    }
-                    if (tile.chunkPosition.y <= -1 && random == 1){
-                        tile.CopyTileData(chunkObject.tChache.tileCache[chunkObject.ore]);
-                        Instantiate(tile.gObject, tile.chunkPosition + transform.position, new Quaternion(0,0,0,0));
+                    for (int tobj = 0; tobj < tile.tObjects.Length; tobj++){
+                        if (tobj == 0){
+                            if (tile.chunkPosition.y == 0){
+                                tile.AddToObjects(chunkObject.tCache.objectCache[chunkObject.ground], tobj);
+                                Instantiate(tile.tObjects[tobj].testObject, tile.chunkPosition + transform.position, new Quaternion());
+                            }
+                            if (tile.chunkPosition.y <= -1 && random == 0){
+                                tile.AddToObjects(chunkObject.tCache.objectCache[chunkObject.ground], tobj);
+                                Instantiate(tile.tObjects[tobj].testObject, tile.chunkPosition + transform.position, new Quaternion());
+                            }
+                            if (tile.chunkPosition.y <= -1 && random == 1){
+                                tile.AddToObjects(chunkObject.tCache.objectCache[chunkObject.ore], tobj);
+                                Instantiate(tile.tObjects[tobj].testObject, tile.chunkPosition + transform.position, new Quaternion());
+                            }
+                        }
                     }
                 }
             }
@@ -67,3 +71,18 @@ public class ChunkGObjectTest : MonoBehaviour
     
     
 }
+
+
+/*if (tile.chunkPosition.y == 0){
+                        tile.CopyTileData(chunkObject.tCache.tileCache[chunkObject.ground]);
+                        Instantiate(tile.gObject, tile.chunkPosition + transform.position, new Quaternion(0,0,0,0));
+                    }
+                    if (tile.chunkPosition.y < 0 && random == 0){
+                        tile.CopyTileData(chunkObject.tCache.tileCache[chunkObject.ground]);
+                        Instantiate(tile.gObject, tile.chunkPosition + transform.position, new Quaternion(0,0,0,0));
+                    }
+                    if (tile.chunkPosition.y <= -1 && random == 1){
+                        tile.CopyTileData(chunkObject.tCache.tileCache[chunkObject.ore]);
+                        Instantiate(tile.gObject, tile.chunkPosition + transform.position, new Quaternion(0,0,0,0));
+                    }
+*/

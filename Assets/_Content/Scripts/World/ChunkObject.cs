@@ -10,10 +10,11 @@ public class ChunkObject : MonoBehaviour
         public string ground = "Ground";
         public string ore = "Ore";
         public Vector3 offset; //how much it is offset from the origin, in 'gridspace' / if chunk is at 16, 32, 16 the offset will be 1,2,1
-        public TileCache tChache;
+        public TileCache tCache;
 
         void Start(){
             chunk = new Chunk(size, transform.position);
+            tCache = TileCache.current;
         }
             
 
