@@ -12,7 +12,7 @@ public class ChunkObject : MonoBehaviour
         public Vector3 offset; //how much it is offset from the origin, in 'gridspace' / if chunk is at 16, 32, 16 the offset will be 1,2,1
         public TileCache tCache;
 
-        void Start(){
+        void Awake(){
             chunk = new Chunk(size, transform.position);
             tCache = TileCache.current;
         }

@@ -48,19 +48,19 @@ public class ChunkGObjectTest : MonoBehaviour
                 for (int iz = 0; iz < size; iz++){
                     int random = Random.Range(0, 2);
                     Tile tile = chunkObject.chunk.tiles[ix, iy, iz];
-                    for (int tobj = 0; tobj < tile.tObjects.Length; tobj++){
-                        if (tobj == 0){
+                    for (int i = 0; i < tile.tObjects.Length; i++){
+                        if (i == 0){
                             if (tile.chunkPosition.y == 0){
-                                tile.AddToObjects(chunkObject.tCache.objectCache[chunkObject.ground], tobj);
-                                Instantiate(tile.tObjects[tobj].testObject, tile.chunkPosition + transform.position, new Quaternion());
+                                tile.AddToObjects(chunkObject.tCache.objectCache[chunkObject.ground], i);
+                                Instantiate(tile.tObjects[i].testObject, tile.chunkPosition + transform.position, new Quaternion());
                             }
                             if (tile.chunkPosition.y <= -1 && random == 0){
-                                tile.AddToObjects(chunkObject.tCache.objectCache[chunkObject.ground], tobj);
-                                Instantiate(tile.tObjects[tobj].testObject, tile.chunkPosition + transform.position, new Quaternion());
+                                tile.AddToObjects(chunkObject.tCache.objectCache[chunkObject.ground], i);
+                                Instantiate(tile.tObjects[i].testObject, tile.chunkPosition + transform.position, new Quaternion());
                             }
                             if (tile.chunkPosition.y <= -1 && random == 1){
-                                tile.AddToObjects(chunkObject.tCache.objectCache[chunkObject.ore], tobj);
-                                Instantiate(tile.tObjects[tobj].testObject, tile.chunkPosition + transform.position, new Quaternion());
+                                tile.AddToObjects(chunkObject.tCache.objectCache[chunkObject.ore], i);
+                                Instantiate(tile.tObjects[i].testObject, tile.chunkPosition + transform.position, new Quaternion());
                             }
                         }
                     }
