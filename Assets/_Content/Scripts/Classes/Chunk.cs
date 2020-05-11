@@ -21,7 +21,9 @@ namespace TileSystem{
             for (int ix = 0; ix < size; ix++){
                 for (int iy = 0; iy < size; iy++){
                     for (int iz = 0; iz < size; iz++){
-                        tiles[ix, iy, iz] = new Tile(0, new Vector3(ix - sizeHalf, iy - sizeHalf, iz - sizeHalf));
+                        Vector3 tCP = new Vector3(ix - sizeHalf, iy - sizeHalf, iz - sizeHalf); // tCP = tile chunk position 
+                        Vector3 tWP = new Vector3(tCP.x + chunkposition.x, tCP.y + chunkposition.y, tCP.z + chunkposition.z); //tWP = tile world position
+                        tiles[ix, iy, iz] = new Tile(tCP, tWP);
                     }
                 }
             }

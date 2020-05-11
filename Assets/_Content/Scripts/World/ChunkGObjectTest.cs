@@ -5,15 +5,22 @@ using TileSystem;
 
 public class ChunkGObjectTest : MonoBehaviour
 {
-    public ChunkObject chunkObject;
+    //public ChunkObject chunkObject;
+    public World world;
     public Tile[] tiles;
 
     void Start(){
        // StartCoroutine(Calculate());
-       Gen();
+       //Gen();
     }
 
-    void Gen(){
+    void WorldGen(){
+        //foreach (ChunkObject chunkO in world);
+
+
+    }
+
+    /*void Gen(){
         int size = chunkObject.size;
         for (int ix = 0; ix < size; ix++){
             for (int iy = 0; iy < size; iy++){
@@ -39,5 +46,5 @@ public class ChunkGObjectTest : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 }

@@ -7,23 +7,21 @@ using UnityEngine;
 namespace TileSystem{
     public class Tile : ScriptableObject
     {
-        public Tile(int lChunkID, Vector3 lChunkPosition){
+        public Tile(Vector3 lChunkPosition, Vector3 lWorldPosition){
             chunkPosition = lChunkPosition;
-            chunkID = lChunkID;
+            worldPosition = lWorldPosition;
             tObjects = new TileObject[16];  //Might change array size later 
-            // The first object in the array should be a terrain or empty, nothing else
+            //do NOT use to store terrain objects, store terrain objects in dedicated slot
         }
 
         public void CopyTileData(Tile tile){
             this.tObjects = tile.tObjects;
+            this.terrain = tile.terrain;
         }
 
-        public void AddToObjects(TileObject tObject, int index){
-            tObjects[index] = tObject;
-        }
-
-        public int chunkID;
         public Vector3 chunkPosition;
+        public Vector3 worldPosition;
         public TileObject[] tObjects;
+        public TerrainTileObject terrain;
     }
 }
